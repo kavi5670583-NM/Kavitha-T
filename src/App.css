@@ -1,0 +1,329 @@
+:root {
+  --bg-primary: #060911;
+  --bg-card: #0f1524;
+  --bg-sidebar: #0b0f19;
+  --text-main: #f8fafc;
+  --text-muted: #64748b;
+  --accent: #06b6d4;
+  --accent-hover: #0891b2;
+  --border-color: #1e293b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --purple: #8b5cf6;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='light'] {
+  --bg-primary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0ea5e9;
+  --accent-hover: #0284c7;
+  --border-color: #cbd5e1;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+.app-frame {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar Dock Frame Modifications */
+.sidebar-dock {
+  width: 280px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+  padding: 1.5rem 1rem;
+}
+
+.dock-brand {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--accent);
+  text-align: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  letter-spacing: 1px;
+}
+
+.dock-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  flex-grow: 1;
+}
+
+.dock-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.dock-btn:hover {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+}
+
+.dock-btn.active {
+  background-color: var(--accent);
+  color: white;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+}
+
+.dock-badge {
+  background-color: var(--bg-primary);
+  color: var(--accent);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.dock-btn.active .dock-badge {
+  background-color: white;
+  color: var(--accent);
+}
+
+/* Workspace Canvas View Layer */
+.workspace-canvas {
+  margin-left: 280px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: calc(100vw - 280px);
+}
+
+.top-matrix-bar {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.workspace-content {
+  padding: 2rem;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* System Alerts Notification Stream */
+.system-alert-matrix {
+  display: flex;
+  gap: 1rem;
+  background-color: #1e1b4b;
+  border: 1px solid #4338ca;
+  border-radius: 8px;
+  padding: 0.75rem 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+/* Operational Data Panels */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-panel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.metric-highlight {
+  font-size: 2.4rem;
+  font-weight: 900;
+  margin: 0.4rem 0;
+  letter-spacing: -1px;
+}
+
+/* Data Tables Optimization */
+.data-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.data-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.85rem;
+}
+
+/* Form controls and search modules */
+.search-input, .filter-select, .raw-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.raw-textarea {
+  font-family: 'Courier New', Courier, monospace;
+  resize: vertical;
+}
+
+/* Catalog View Display Components */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.wishlist-heart {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.stock-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--danger);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  z-index: 10;
+}
+
+/* Global Navigation & Action Controllers */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary:hover { background-color: var(--accent-hover); }
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  border-left: 4px solid var(--accent);
+  font-weight: 600;
+}
+
+.ai-chat-widget {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 340px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  z-index: 999;
+}
